@@ -1,9 +1,9 @@
-import allowedCountries from "../allowedCountries";
+import allowedCountries from "../allowedCountries.js";
 import { CountryCode, VATNumber } from "../controllers/vatController";
 
 export type VatCheckResult =
-  | { validated: true; details: string; meta?: Record<string, unknown> }
-  | { validated: false; details: string; meta?: Record<string, unknown> };
+  | { validated: true; details: string; status: number }
+  | { validated: false; details: string; status: number };
 
 export abstract class VatService {
   abstract check(countryCode: string, vat: string): Promise<VatCheckResult>;

@@ -1,0 +1,1 @@
+{"version":3,"file":"ConfigurationModel.js","sourceRoot":"","sources":["../../source/models/ConfigurationModel.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,MAAM,IAAI,CAAC;AAkBpB,MAAM,CAAC,MAAM,oBAAoB,GAAG,CAAC,IAAY,EAAiB,EAAE;IAClE,MAAM,aAAa,GAAkB,IAAI,CAAC,KAAK,CAC7C,EAAE,CAAC,YAAY,CAAC,IAAI,EAAE,OAAO,CAAC,CAC/B,CAAC;IAEF,OAAO,aAAa,CAAC;AACvB,CAAC,CAAC"}

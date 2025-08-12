@@ -1,9 +1,9 @@
 import { Configuration } from "../models/ConfigurationModel";
 import allowedCountries from "../allowedCountries.js";
 import { z } from "zod";
-import { getService } from "../services/getService";
+import { getService } from "../services/getService.js";
 import { Request, Response } from "express";
-import { VatService } from "../services/VatService";
+import { VatService } from "../services/VatService.js";
 
 const allowedCountryCodes = allowedCountries.map((country) => country.code);
 
@@ -34,6 +34,7 @@ export default class VATController {
 
     try {
       const vatService = getService(countryCode);
+
       if (!vatService) {
         console.error(
           "501 Not implemented --> wrong CountryCode or VAT format"
@@ -43,7 +44,7 @@ export default class VATController {
 
       const response = await vatService.check(countryCode, vat);
 
-      res.json({ valid: isValid, ...response });
+      res.status(response.status).json({ ...response });
     } catch (error) {
       console.error("501 Not implemented --> wrong CountryCode or VAT format");
       res.status(501).json({ error: "Not implemented", details: error });
