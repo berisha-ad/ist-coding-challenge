@@ -1,0 +1,40 @@
+import { CountryCode } from "./routers/vatRouter";
+
+export type Country = { code: string; regex: RegExp };
+
+const allowedCountries: Country[] = [
+  { code: "AT", regex: /^ATU[0-9]{8}$/ },
+  { code: "BE", regex: /^BE[01][0-9]{9}$/ },
+  { code: "BG", regex: /^BG[0-9]{9,10}$/ },
+  { code: "CH", regex: /^CHE-[0-9]{3}\.[0-9]{3}\.[0-9]{3}$/ },
+  { code: "CY", regex: /^CY[0-9A-Z]{8}[A-Z]{1}$/ },
+  { code: "CZ", regex: /^CZ[0-9]{8,10}$/ },
+  { code: "DE", regex: /^DE[0-9]{9}$/ },
+  { code: "DK", regex: /^DK[0-9]{8}$/ },
+  { code: "EE", regex: /^EE[0-9]{9}$/ },
+  { code: "EL", regex: /^(EL|GR)[0-9]{9}$/ },
+  { code: "ES", regex: /^ES([0-9]{8}[A-Z]|[A-Z][0-9]{8}|[A-Z][0-9]{7}[A-Z])$/ },
+  { code: "FI", regex: /^FI[0-9]{8}$/ },
+  { code: "FR", regex: /^FR[0-9A-Z]{2}[0-9]{9}$/ },
+  { code: "GB", regex: /^GB([0-9]{9}|[0-9]{12}|GD[0-9]{3}|HA[0-9]{3})$/ },
+  { code: "HR", regex: /^HR[0-9]{11}$/ },
+  { code: "HU", regex: /^HU[0-9]{8}$/ },
+  {
+    code: "IE",
+    regex: /^IE[0-9]((([0-9]|[A-Z]|\+\*)[0-9]{5}[A-Z])|([0-9]{6}[A-Z]{2}))$/,
+  },
+  { code: "IT", regex: /^IT[0-9]{11}$/ },
+  { code: "LT", regex: /^LT([0-9]{9}|[0-9]{12})$/ },
+  { code: "LU", regex: /^LU[0-9]{8}$/ },
+  { code: "LV", regex: /^LV[0-9]{11}$/ },
+  { code: "MT", regex: /^MT[0-9]{8}$/ },
+  { code: "NL", regex: /^NL[0-9]{9}B[0-9]{2}$/ },
+  { code: "PL", regex: /^PL[0-9]{10}$/ },
+  { code: "PT", regex: /^PT[0-9]{9}$/ },
+  { code: "RO", regex: /^(RO)?[0-9]{2,10}$/ },
+  { code: "SE", regex: /^SE[0-9]{12}$/ },
+  { code: "SI", regex: /^SI[0-9]{8}$/ },
+  { code: "SK", regex: /^SK[0-9]{10}$/ },
+];
+
+export default allowedCountries;
