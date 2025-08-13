@@ -1,7 +1,7 @@
 import express, { Express, Router, json } from "express";
 import responseTime from "response-time";
 import Helmet from "helmet";
-import DummyRouter from "./routers/vatRouter.js"; // TO_CHANGE: naming
+import vatRouter from "./routers/vatRouter.js"; // TO_CHANGE: naming
 import { Configuration } from "./models/ConfigurationModel.js";
 
 export default function createApp(configuration: Configuration): {
@@ -15,7 +15,7 @@ export default function createApp(configuration: Configuration): {
 
   app.use(responseTime({ suffix: true }));
 
-  const router = DummyRouter(configuration);
+  const router = vatRouter(configuration);
   app.use("/", router);
   return { app, router };
 }

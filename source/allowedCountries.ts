@@ -1,5 +1,3 @@
-import { CountryCode } from "./routers/vatRouter";
-
 export type Country = { code: string; regex: RegExp };
 
 const allowedCountries: Country[] = [

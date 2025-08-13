@@ -4,7 +4,7 @@ import { getService } from "../services/getService.js";
 import { VatService } from "../services/VatService.js";
 const allowedCountryCodes = allowedCountries.map((country) => country.code);
 const countryCodeSchema = z.enum(allowedCountryCodes);
-const vatNumberSchema = z.string().min(2).max(100); // here we can define the min and max length for the vat number
+const vatNumberSchema = z.string().min(2).max(100);
 const bodySchema = z.object({
     countryCode: countryCodeSchema,
     vat: vatNumberSchema,

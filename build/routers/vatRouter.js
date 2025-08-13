@@ -6,10 +6,6 @@ let vatController; // TO_CHANGE: naming
 const allowedCountryCodes = allowedCountries.map((country) => country.code);
 const countryCodeSchema = z.enum(allowedCountryCodes);
 const vatNumberSchema = z.string().min(2).max(100); // here we can define the min and max length for the vat number
-const bodySchema = z.object({
-    countryCode: countryCodeSchema,
-    vat: vatNumberSchema,
-});
 const router = (configuration) => {
     // TO_CHANGE: if you don't need your configuration here or in the controller, you can remove the function and just export the router itself
     const expressRouter = Router({

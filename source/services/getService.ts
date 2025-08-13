@@ -1,4 +1,4 @@
-import { CountryCode, VATNumber } from "../routers/vatRouter";
+import { CountryCode } from "../controllers/vatController";
 import { VatService } from "./VatService.js";
 import { VatServiceCH } from "./VatServiceCH.js";
 import { VatServiceEU } from "./VatServiceEU.js";

@@ -3,7 +3,6 @@ import { z } from "zod";
 import VATController from "../controllers/vatController.js"; // TO_CHANGE: naming
 import { Configuration } from "../models/ConfigurationModel.js";
 import allowedCountries from "../allowedCountries.js";
-import { getService } from "../services/getService.js";
 
 let vatController: VATController; // TO_CHANGE: naming
 
@@ -11,13 +10,6 @@ const allowedCountryCodes = allowedCountries.map((country) => country.code);
 
 const countryCodeSchema = z.enum(allowedCountryCodes as [string, ...string[]]);
 const vatNumberSchema = z.string().min(2).max(100); // here we can define the min and max length for the vat number
-export type CountryCode = z.infer<typeof countryCodeSchema>;
-export type VATNumber = z.infer<typeof vatNumberSchema>;
-
-const bodySchema = z.object({
-  countryCode: countryCodeSchema,
-  vat: vatNumberSchema,
-});
 
 const router = (configuration: Configuration): Router => {
   // TO_CHANGE: if you don't need your configuration here or in the controller, you can remove the function and just export the router itself
