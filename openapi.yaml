@@ -1,0 +1,217 @@
+openapi: 3.0.3
+info:
+  title: VAT Checker Service
+  version: 1.0.0
+  description: |
+    Node.js/TypeScript service to validate VAT numbers via EU VIES and Swiss UID services.
+    - Validation of request shape with Zod
+    - Regex pre-validation by country
+    - Routing to EU or CH external services
+    - Consistent JSON response
+
+servers:
+  - url: http://localhost:{port}
+    description: Local server
+    variables:
+      port:
+        default: "3000"
+
+tags:
+  - name: Validation
+    description: VAT number validation
+
+paths:
+  /validate:
+    post:
+      tags: [Validation]
+      summary: Validate a VAT number
+      description: |
+        Validates the format using country-specific regex, then calls the appropriate external service:
+        - EU countries → EU VIES REST API
+        - CH → Swiss UID SOAP service
+        If the country is not supported by either service, returns **501 Not Implemented**.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ValidateRequest"
+            examples:
+              germany:
+                summary: Germany
+                value: { countryCode: "DE", vat: "DE123456789" }
+              austria:
+                summary: Austria
+                value: { countryCode: "AT", vat: "ATU12345678" }
+              switzerland:
+                summary: Switzerland
+                value: { countryCode: "CH", vat: "CHE-123.456.789" }
+      responses:
+        "200":
+          description: VAT number is valid
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/VatCheckResult"
+              examples:
+                ok:
+                  value:
+                    validated: true
+                    details: "VAT number is valid for the given country code."
+                    status: 200
+        "400":
+          description: Invalid request or VAT format
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: "#/components/schemas/ErrorResponse"
+                  - $ref: "#/components/schemas/LegacyErrorResponse"
+              examples:
+                invalidFormat:
+                  value:
+                    code: 400
+                    message: "The VAT format is invalid for the provided country."
+                legacy:
+                  value:
+                    error: "This VAT format is invalid"
+        "501":
+          description: Country not supported / Not implemented
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: "#/components/schemas/ErrorResponse"
+                  - $ref: "#/components/schemas/LegacyErrorResponseWithDetails"
+              examples:
+                notImplemented:
+                  value:
+                    code: 501
+                    message: "The external service for this country is not implemented."
+                legacy:
+                  value:
+                    error: "Not implemented"
+                    details: "Country not supported by EU or CH service."
+        "502":
+          description: Upstream (EU/CH) service error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              examples:
+                upstream:
+                  value:
+                    code: 502
+                    message: "The external service could not be reached."
+        "503":
+          description: Upstream temporarily unavailable / timeout
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              examples:
+                timeout:
+                  value:
+                    code: 503
+                    message: "The external service is temporarily unavailable."
+
+components:
+  schemas:
+    ValidateRequest:
+      type: object
+      required: [countryCode, vat]
+      properties:
+        countryCode:
+          $ref: "#/components/schemas/CountryCode"
+        vat:
+          type: string
+          minLength: 2
+          maxLength: 100
+          description: Raw VAT string as sent by client. The service performs a country-specific regex check before calling external systems.
+      example:
+        countryCode: "DE"
+        vat: "DE123456789"
+
+    VatCheckResult:
+      type: object
+      required: [validated, details, status]
+      properties:
+        validated:
+          type: boolean
+          description: True if the external service confirms validity.
+        details:
+          type: string
+          description: Human-readable message.
+        status:
+          type: integer
+          description: Mirrors the HTTP status used by the service implementation.
+      example:
+        validated: true
+        details: "VAT number is valid for the given country code."
+        status: 200
+
+    ErrorResponse:
+      type: object
+      required: [code, message]
+      properties:
+        code:
+          type: integer
+          description: HTTP-like code explaining the error.
+        message:
+          type: string
+          description: Human-readable error description.
+      example:
+        code: 400
+        message: "The external service could not be reached."
+
+    LegacyErrorResponse:
+      type: object
+      required: [error]
+      properties:
+        error:
+          type: string
+      example:
+        error: "This VAT format is invalid"
+
+    LegacyErrorResponseWithDetails:
+      allOf:
+        - $ref: "#/components/schemas/LegacyErrorResponse"
+        - type: object
+          properties:
+            details:
+              description: Optional details (e.g., error object)
+              nullable: true
+
+    CountryCode:
+      type: string
+      description: ISO 3166-1 alpha-2 country code used by the service.
+      enum:
+        - AT
+        - BE
+        - BG
+        - CH
+        - CY
+        - CZ
+        - DE
+        - DK
+        - EE
+        - EL
+        - ES
+        - FI
+        - FR
+        - GB
+        - HR
+        - HU
+        - IE
+        - IT
+        - LT
+        - LU
+        - LV
+        - MT
+        - NL
+        - PL
+        - PT
+        - RO
+        - SE
+        - SI
+        - SK
