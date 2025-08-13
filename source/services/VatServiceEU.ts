@@ -36,11 +36,11 @@ export class VatServiceEU extends VatService {
       console.log("EU VAT validation response:", data);
       return data.valid
         ? {
-            validated: true,
+            valid: true,
             details: "VAT number is valid for the given country code.",
             status: 200,
           }
-        : { validated: false, details: "VAT number is invalid.", status: 400 };
+        : { valid: false, details: "VAT number is invalid.", status: 400 };
     } catch (e) {
       throw new Error("EU service call failed");
     }

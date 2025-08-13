@@ -71,7 +71,7 @@ pnpm watch:test     # Run automated tests in watch mode
 1. VAT number is valid
 
 - Status: 200
-- { "validated": true, "details": "VAT number is valid for the given country code."}
+- { "valid": true, "details": "VAT number is valid for the given country code."}
 
 2. Regex validation failed
 
@@ -81,7 +81,7 @@ pnpm watch:test     # Run automated tests in watch mode
 3. External service reports invalid VAT
 
 - Status: 400
-- { "validated": false, "details": "VAT number is invalid."}
+- { "valid": false, "details": "VAT number is invalid."}
 
 4. Unsupported countryCode
 

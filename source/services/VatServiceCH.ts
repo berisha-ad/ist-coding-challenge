@@ -38,10 +38,10 @@ export class VatServiceCH extends VatService {
     const validated = m[1] === "true";
     return validated
       ? {
-          validated: true,
+          valid: true,
           details: "VAT number is valid for the given country code.",
           status: 200,
         }
-      : { validated: false, details: "VAT number is invalid.", status: 400 };
+      : { valid: false, details: "VAT number is invalid.", status: 400 };
   }
 }
