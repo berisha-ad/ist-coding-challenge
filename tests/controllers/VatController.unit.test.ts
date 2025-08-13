@@ -39,7 +39,6 @@ describe("VATController.validate (unit)", () => {
     expect(res.json).toHaveBeenCalledWith({
       validated: true,
       details: "ok",
-      status: 200,
     });
   });
 
@@ -58,7 +57,7 @@ describe("VATController.validate (unit)", () => {
     expect(res.json).toHaveBeenCalledWith({
       validated: false,
       details: "nope",
-      status: 400,
+      // kein status im Body – der Controller sendet ihn nicht zurück
     });
   });
 

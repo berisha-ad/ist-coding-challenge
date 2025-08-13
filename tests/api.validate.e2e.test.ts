@@ -30,7 +30,7 @@ describe("POST /validate (e2e)", () => {
       .set("content-type", "application/json");
 
     expect(res.status).toBe(200);
-    expect(res.body).toEqual({ validated: true, details: "ok", status: 200 });
+    expect(res.body).toEqual({ validated: true, details: "ok" });
   });
 
   it("400 for invalid VAT format (pre-call gate)", async () => {

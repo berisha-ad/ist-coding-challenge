@@ -46,7 +46,7 @@ export default class VATController {
 
       res
         .status(response.status)
-        .json({ valid: response.valid, details: response.details });
+        .json({ validated: response.validated, details: response.details });
     } catch (error) {
       console.error("501 Not implemented --> wrong CountryCode or VAT format");
       res.status(501).json({ error: "Not implemented", details: error });

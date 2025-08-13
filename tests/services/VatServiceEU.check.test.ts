@@ -38,7 +38,7 @@ describe("VatServiceEU.check", () => {
       json: async () => ({
         valid: false,
         countryCode: "DE",
-        vatNumber: "DE123456789",
+        vatNumber: "123456789",
       }),
     });
 
@@ -52,10 +52,10 @@ describe("VatServiceEU.check", () => {
   });
 
   it("throws if EU service not ok", async () => {
-    (global.fetch as jest.Mock).mockResolvedValue({ ok: false });
+    (global.fetch as jest.Mock).mockResolvedValue({ ok: false, status: 500 });
     const svc = new VatServiceEU();
     await expect(svc.check("DE" as any, "DE123456789" as any)).rejects.toThrow(
-      "EU service call failed"
+      /EU service call failed/
     );
   });
 
@@ -63,7 +63,7 @@ describe("VatServiceEU.check", () => {
     (global.fetch as jest.Mock).mockRejectedValue(new Error("boom"));
     const svc = new VatServiceEU();
     await expect(svc.check("DE" as any, "DE123456789" as any)).rejects.toThrow(
-      "EU service call failed"
+      "boom"
     );
   });
 });

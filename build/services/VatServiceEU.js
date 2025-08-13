@@ -8,29 +8,26 @@ export class VatServiceEU extends VatService {
                 "content-type": "application/json",
                 accept: "application/json",
             },
-            body: JSON.stringify({
-                countryCode,
-                vatNumber: vat,
-            }),
+            body: JSON.stringify({ countryCode, vatNumber: vat.slice(2) }),
         };
-        try {
-            const response = await fetch(EU_VALIDATE_VAT_URL, options);
-            if (!response.ok) {
-                throw new Error("EU service call failed");
-            }
-            const data = (await response.json());
-            console.log("EU VAT validation response:", data);
-            return data.valid
-                ? {
-                    valid: true,
-                    details: "VAT number is valid for the given country code.",
-                    status: 200,
-                }
-                : { valid: false, details: "VAT number is invalid.", status: 400 };
+        const response = await fetch(EU_VALIDATE_VAT_URL, options);
+        if (!response.ok)
+            throw new Error(`EU service call failed: ${response.status}`);
+        const data = (await response.json());
+        console.log("EU VAT validation response:", data);
+        if (data.valid === true) {
+            return {
+                validated: true,
+                details: "VAT number is valid for the given country code.",
+                status: 200,
+            };
         }
-        catch (e) {
-            throw new Error("EU service call failed");
-        }
+        const detail = data.userError
+            ? `Invalid (${data.userError}).`
+            : data.formatError
+                ? `Format error (${data.formatError}).`
+                : "VAT number is invalid.";
+        return { validated: false, details: detail, status: 400 };
     }
 }
 //# sourceMappingURL=VatServiceEU.js.map
