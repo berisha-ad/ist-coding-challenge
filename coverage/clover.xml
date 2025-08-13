@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1755088596362" clover="3.2.0">
+  <project timestamp="1755088596362" name="All files">
+    <metrics statements="75" coveredstatements="73" conditionals="12" coveredconditionals="11" methods="9" coveredmethods="9" elements="96" coveredelements="93" complexity="0" loc="75" ncloc="75" packages="3" files="6" classes="6"/>
+    <package name="source">
+      <metrics statements="12" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="server.ts" path="/Users/adrianberisha/Desktop/dev/ist-coding-challenge/source/server.ts">
+        <metrics statements="12" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="source.controllers">
+      <metrics statements="24" coveredstatements="22" conditionals="2" coveredconditionals="1" methods="3" coveredmethods="3"/>
+      <file name="vatController.ts" path="/Users/adrianberisha/Desktop/dev/ist-coding-challenge/source/controllers/vatController.ts">
+        <metrics statements="24" coveredstatements="22" conditionals="2" coveredconditionals="1" methods="3" coveredmethods="3"/>
+        <line num="2" count="2" type="stmt"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="8" count="58" type="stmt"/>
+        <line num="10" count="2" type="stmt"/>
+        <line num="11" count="2" type="stmt"/>
+        <line num="15" count="2" type="stmt"/>
+        <line num="20" count="2" type="stmt"/>
+        <line num="24" count="2" type="stmt"/>
+        <line num="28" count="7" type="stmt"/>
+        <line num="29" count="7" type="stmt"/>
+        <line num="30" count="7" type="cond" truecount="1" falsecount="0"/>
+        <line num="31" count="2" type="stmt"/>
+        <line num="32" count="2" type="stmt"/>
+        <line num="35" count="5" type="stmt"/>
+        <line num="36" count="5" type="stmt"/>
+        <line num="38" count="5" type="cond" truecount="0" falsecount="1"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="45" count="5" type="stmt"/>
+        <line num="47" count="3" type="stmt"/>
+        <line num="49" count="2" type="stmt"/>
+        <line num="50" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="source.services">
+      <metrics statements="39" coveredstatements="39" conditionals="10" coveredconditionals="10" methods="5" coveredmethods="5"/>
+      <file name="ServiceFactory.ts" path="/Users/adrianberisha/Desktop/dev/ist-coding-challenge/source/services/ServiceFactory.ts">
+        <metrics statements="6" coveredstatements="6" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="7" count="2" type="cond" truecount="1" falsecount="0"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+      </file>
+      <file name="VatService.ts" path="/Users/adrianberisha/Desktop/dev/ist-coding-challenge/source/services/VatService.ts">
+        <metrics statements="8" coveredstatements="8" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+        <line num="1" count="6" type="stmt"/>
+        <line num="8" count="6" type="stmt"/>
+        <line num="15" count="43" type="stmt"/>
+        <line num="16" count="3" type="cond" truecount="1" falsecount="0"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="19" count="2" type="cond" truecount="1" falsecount="0"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+      </file>
+      <file name="VatServiceCH.ts" path="/Users/adrianberisha/Desktop/dev/ist-coding-challenge/source/services/VatServiceCH.ts">
+        <metrics statements="13" coveredstatements="13" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
+        <line num="1" count="4" type="stmt"/>
+        <line num="3" count="4" type="stmt"/>
+        <line num="5" count="4" type="stmt"/>
+        <line num="7" count="4" type="stmt"/>
+        <line num="9" count="4" type="stmt"/>
+        <line num="19" count="4" type="stmt"/>
+        <line num="28" count="4" type="stmt"/>
+        <line num="29" count="4" type="cond" truecount="1" falsecount="0"/>
+        <line num="31" count="3" type="stmt"/>
+        <line num="34" count="3" type="cond" truecount="1" falsecount="0"/>
+        <line num="36" count="2" type="stmt"/>
+        <line num="38" count="2" type="stmt"/>
+        <line num="39" count="2" type="cond" truecount="2" falsecount="0"/>
+      </file>
+      <file name="VatServiceEU.ts" path="/Users/adrianberisha/Desktop/dev/ist-coding-challenge/source/services/VatServiceEU.ts">
+        <metrics statements="12" coveredstatements="12" conditionals="3" coveredconditionals="3" methods="1" coveredmethods="1"/>
+        <line num="2" count="4" type="stmt"/>
+        <line num="11" count="4" type="stmt"/>
+        <line num="13" count="4" type="stmt"/>
+        <line num="18" count="4" type="stmt"/>
+        <line num="30" count="4" type="stmt"/>
+        <line num="31" count="4" type="stmt"/>
+        <line num="32" count="3" type="cond" truecount="1" falsecount="0"/>
+        <line num="33" count="1" type="stmt"/>
+        <line num="35" count="2" type="stmt"/>
+        <line num="36" count="2" type="stmt"/>
+        <line num="37" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="45" count="2" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>
