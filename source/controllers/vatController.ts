@@ -1,9 +1,9 @@
 import { Configuration } from "../models/ConfigurationModel";
 import allowedCountries from "../allowedCountries.js";
 import { z } from "zod";
-import { getService } from "../services/getService.js";
 import { Request, Response } from "express";
 import { VatService } from "../services/VatService.js";
+import { ServiceFactory } from "../services/ServiceFactory.js";
 
 const allowedCountryCodes = allowedCountries.map((country) => country.code);
 
@@ -33,7 +33,7 @@ export default class VATController {
     }
 
     try {
-      const vatService = getService(countryCode);
+      const vatService = ServiceFactory.getServiceFor(countryCode);
 
       if (!vatService) {
         console.error(
